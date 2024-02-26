@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.icon19,R.drawable.icon20};
 
     ArrayList<CardModel> models = new ArrayList<>();
+
     CardAdapter adapter;
 
     @Override
@@ -26,16 +27,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setUpModels();
-        adapter = new CardAdapter(this, models);
+        adapter = new CardAdapter(this, this, models);
         RecyclerView recyclerView = findViewById(R.id.r1);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void setUpModels(){
+
+    private void setUpModels()
+    {
         String[]texts= getResources().getStringArray(R.array.numbers);
-        for(int i=0; i<texts.length; i++){
-            models.add(new CardModel(texts[i],images[i]));
+        String[]texts2= getResources().getStringArray(R.array.numbersOppsite);
+        for(int i=0; i<texts.length; i++)
+        {
+            models.add(new CardModel(texts[i],images[i], texts2[i]));
         }
     }
 
